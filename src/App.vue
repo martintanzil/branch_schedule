@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <form-create-branch></form-create-branch>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FormCreateBranch from './components/FormCreateBranch.vue';
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    FormCreateBranch,
   }
 }
 </script>
