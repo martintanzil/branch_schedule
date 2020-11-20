@@ -42,7 +42,7 @@
                       ></span>
                     </div>
                     <input
-                      type="number"
+                      type="tel"
                       class="form-control"
                       im-insert="true"
                       id="store_phone_number"
@@ -61,7 +61,7 @@
                     v-for="(day, index) in days"
                     :day="day"
                     :key="index"
-
+                    v-model="checkBoxData"
                   ></opening-time>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default {
         "Saturday",
         "Sunday",
       ],
-      check: [],
+      checkBoxData: [],
       Branch: {
         name: "",
         address: "",

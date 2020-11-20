@@ -5,8 +5,9 @@
         <input
           class="form-check-input"
           type="checkbox"
-          :value="day"
-          name="OpeningTime[]"
+          :value="scheduleData"
+          name="checkBoxSchedule"
+          @change="onCheckedChange"
         />
       </b-col>
       <b-col cols="2" class="text-left">
@@ -40,36 +41,76 @@
 <script>
 export default {
   name: "OpeningTime",
-  components: {},
-  // model:{
-  //   prop: 'scheduleArray',
-  //   event:
-  // },
-  props: {
-    day: {
-      type: String,
-      required: true,
-    },
-  },
+  props: ['value', 'day'],
   data() {
     return {
-      checkbox: false,
+      currentCheckboxData: [],
+      checked: false,
       openTime: "",
       closeTime: "",
+      scheduleData:{
+        day: "",
+        openTime: "",
+        closeTime: ""
+      },
     };
   },
-  watch: {
-    checkbox: function () {
-      this.$emit("child-checkbox", this.checkbox);
-    },
-  },
   methods: {
-    alertMe() {
-      this.$refs.closeTime.datetimepicker({
-        format: "LT",
+    onCheckedChange(){
+      this.checked = !this.checked
+      
+      if(this.checked) this.addCheckboxValueToParent()
+      else this.deleteCheckboxValueToParent()
+    },
+    updateCheckboxValueLocally(){
+      this.currentCheckboxData = [...this.value]
+      if(this.currentCheckboxData.length !== 0){
+        this.currentCheckboxData = this.currentCheckboxData.filter(schedule => {
+          return schedule.day !== this.scheduleData.day
+        })
+      }
+    },
+    addCheckboxValueToParent (){
+      this.updateCheckboxValueLocally()
+      this.currentCheckboxData.push(this.scheduleData)
+      this.$emit('input', this.sortScheduleByDays(this.currentCheckboxData))
+    },
+    deleteCheckboxValueToParent(){
+      this.updateCheckboxValueLocally()
+      this.$emit('input', this.sortScheduleByDays(this.currentCheckboxData))
+    },
+    sortScheduleByDays(scheduleData){
+      const sorter = {
+        "Monday": 1,
+        "Tuesday": 2,
+        "Wednesday": 3,
+        "Thursday": 4,
+        "Friday": 5,
+        "Saturday": 6,
+        "Sunday": 7
+      }
+      return scheduleData.sort((a, b) => {
+        return sorter[a.day] - sorter[b.day];
       });
+    }
+  },
+  watch:{
+    openTime(newValue){
+      if(this.checked){
+        this.scheduleData.openTime = newValue
+        this.addCheckboxValueToParent()  
+      }
+    },
+    closeTime(newValue){
+      if(this.checked){
+        this.scheduleData.closeTime = newValue
+        this.addCheckboxValueToParent()  
+      }
     },
   },
+  mounted(){
+    this.scheduleData.day = this.day
+  }
 };
 </script>
 
