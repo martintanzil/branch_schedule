@@ -11,26 +11,28 @@
         />
       </b-col>
       <b-col cols="2" class="text-left">
-        <label class="form-check-label" for="OpeningTime">
+        <label class="form-check-label" :class="{'blur':!checked }" for="OpeningTime">
           {{ day }}
         </label>
       </b-col>
       <b-col>
         <div class="d-inline">
           <b-form-timepicker
-            v-model="openTime"
             locale="en"
             placeholder="Open time"
+            :disabled="!checked"
+            v-model="openTime"
           ></b-form-timepicker>
         </div>
       </b-col>
-      <label class="d-inline">To</label>
+      <label class="d-inline" :class="{'blur':!checked }">To</label>
       <b-col>
         <div class="d-inline">
           <b-form-timepicker
-            v-model="closeTime"
             locale="en"
             placeholder="Close Time"
+            v-model="closeTime"
+            :disabled="!checked"
           ></b-form-timepicker>
         </div>
       </b-col>
@@ -115,4 +117,7 @@ export default {
 </script>
 
 <style  scoped>
+.blur{
+  color:#dddddd;
+}
 </style>
