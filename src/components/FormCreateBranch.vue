@@ -101,7 +101,6 @@ export default {
         "Saturday",
         "Sunday",
       ],
-      check: [],
       Branch: {
         name: "",
         address: "",
