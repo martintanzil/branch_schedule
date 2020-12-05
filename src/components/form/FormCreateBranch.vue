@@ -2,9 +2,7 @@
   <form @submit.prevent="submitForm">
     <div class="row">
       <div class="col-lg-12">
-        <div class="card">
-          <div class="card-header card-form">Store</div>
-          <div class="card-body">
+        <base-card title="Create Branch"> 
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
@@ -66,16 +64,16 @@
                 </div>
               </div>
             </div>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+         
+         
+        
+        </base-card>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
         <div class="float-right">
-          <base-button></base-button>
+          <base-button @click="submitForm"></base-button>
         </div>
       </div>
     </div>
@@ -85,10 +83,11 @@
 </template>
 
 <script>
-import OpeningTime from "./OpeningTime.vue";
+import OpeningTime from "../OpeningTime.vue";
+import BaseCard from "../base/BaseCard.vue"
 
 export default {
-  components: { OpeningTime },
+  components: { OpeningTime, BaseCard },
   name: "FormCreateBranch",
   data() {
     return {
@@ -114,9 +113,6 @@ export default {
       console.log(this.Branch.name);
       console.log(this.Branch.address);
       console.log(this.Branch.phoneNumber);
-    },
-    checkboxValue: function (params) {
-      this.check.push = params;
     },
   },
 };

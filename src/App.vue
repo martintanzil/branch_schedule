@@ -1,19 +1,26 @@
 <template>
   <div id="app">
-    <form-create-branch></form-create-branch>
+    <!-- <the-side-bar></the-side-bar> -->
+    <!-- <form-create-branch></form-create-branch> -->
+    <!-- <form-create-franchise></form-create-franchise> -->
+    <form-create-menu></form-create-menu>
   </div>
 </template>
 
 <script>
-import FormCreateBranch from './components/FormCreateBranch.vue';
-
-
+// import FormCreateBranch from "./components/form/FormCreateBranch.vue";
+// import FormCreateFranchise from "./components/form/FormCreateFranchise.vue"
+// import TheSideBar from "./components/form/TheSideBar.vue"
+import FormCreateMenu from "./components/form/FormCreateMenu.vue"
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    FormCreateBranch,
-  }
-}
+    // FormCreateBranch,
+    // FormCreateFranchise,
+    FormCreateMenu,
+    // TheSideBar,
+  },
+};
 </script>
 
 <style>
@@ -21,7 +28,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }

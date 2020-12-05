@@ -11,7 +11,7 @@
         />
       </b-col>
       <b-col cols="2" class="text-left">
-        <label class="form-check-label" :class="{'blur':!checked }" for="OpeningTime">
+        <label class="form-check-label" :class="{'onDisabled':!checked }" for="OpeningTime">
           {{ day }}
         </label>
       </b-col>
@@ -25,7 +25,7 @@
           ></b-form-timepicker>
         </div>
       </b-col>
-      <label class="d-inline" :class="{'blur':!checked }">To</label>
+      <label class="d-inline" :class="{'onDisabled':!checked }">To</label>
       <b-col>
         <div class="d-inline">
           <b-form-timepicker
@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style  scoped>
-.blur{
+.onDisabled{
   color:#dddddd;
 }
 </style>
